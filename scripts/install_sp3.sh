@@ -17,6 +17,11 @@ chmod 600 /home/ubuntu/.ssh/gitlab_key
 echo "---Cloning SP3 Git"
 GIT_SSH_COMMAND='ssh -i /home/ubuntu/.ssh/gitlab_key -o StrictHostKeyChecking=no' git clone git@gitlab.com:MMMCloudPipeline/sp3.git
 
+if ${sp3_branch} != ""
+    cd sp3
+    git checkout ${sp3_branch}
+    cd ..
+
 # Create key pair for SSH to self
 
 ssh-keygen -t rsa -f /home/ubuntu/.ssh/self_id_rsa -q -P ""
