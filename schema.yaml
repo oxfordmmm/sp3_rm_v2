@@ -18,6 +18,8 @@ variableGroups:
       - ${env_name}
       - ${specify_prefix}
       - ${name_prefix}
+      - ${specify_sp3_branch}
+      - ${sp3_branch}
   - title: "Bastion Config"
     variables:
       - ${bastion_image}
@@ -274,6 +276,15 @@ variables:
     description: "Optional prefix for all Display Names and Hostnames - lower case and digits only - must start with lower case letter"
     pattern: "^[a-z][a-z0-9]+$"
     visible: ${specify_prefix}
+  specify_sp3_branch:
+    title: "Would you like to specify a non standard branch for the deployment?"
+    type: boolean
+    default: false
+  sp3_branch:
+    type: string
+    title: "SP3 Prefix"
+    description: "Optionally use a different branch of the SP3 repo"
+    visible: ${specify_sp3_branch}
   hn_boot_size:
     type: integer
     title: "Head Node Server Boot Volume Size"
