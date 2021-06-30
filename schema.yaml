@@ -20,6 +20,8 @@ variableGroups:
       - ${name_prefix}
       - ${specify_sp3_branch}
       - ${sp3_branch}
+      - ${specify_ncov_artic_branch}
+      - ${ncov_artic_branch}
   - title: "Bastion Config"
     variables:
       - ${bastion_image}
@@ -282,9 +284,18 @@ variables:
     default: false
   sp3_branch:
     type: string
-    title: "SP3 Prefix"
+    title: "SP3 branch"
     description: "Optionally use a different branch of the SP3 repo"
     visible: ${specify_sp3_branch}
+  specify_ncov_artic_branch:
+    title: "Would you like to specify a non standard branch for the ncov artic pipeline deployment?"
+    type: boolean
+    default: false
+  ncov_artic_branch:
+    type: string
+    title: "Ncov2019_artic_nf branch"
+    description: "Optionally use a different branch of the ncov2019_artic_nf repo"
+    visible: ${specify_ncov_artic_branch}
   hn_boot_size:
     type: integer
     title: "Head Node Server Boot Volume Size"
