@@ -90,6 +90,7 @@ data "template_file" "install_sp3" {
   vars = {
     Sp3_gitrepo_secret_id = local.Sp3_gitrepo_secret_id
     Sp3_deploy_1k         = var.deploy_1k
+    Sp3_branch            = local.Sp3_branch
   }
 }
 
