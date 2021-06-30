@@ -17,7 +17,7 @@ chmod 600 /home/ubuntu/.ssh/gitlab_key
 echo "---Cloning SP3 Git"
 GIT_SSH_COMMAND='ssh -i /home/ubuntu/.ssh/gitlab_key -o StrictHostKeyChecking=no' git clone git@gitlab.com:MMMCloudPipeline/sp3.git
 
-if "${Sp3_branch}" != ""
+if [ "${Sp3_branch}" != "" ]
 then
     cd sp3
     git checkout ${Sp3_branch}
