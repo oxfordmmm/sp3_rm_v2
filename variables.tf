@@ -19,6 +19,7 @@ variable "randomise_ad" { default = true }
 variable "ad" { default = "" }
 variable "name_prefix" { default = "" }
 variable "sp3_branch" { default = "" }
+variable "ncov_artic_branch" { default = "" }
 variable "env_name" { default = "sp3" }
 variable "deploy_test" { default = false }
 variable "deploy_1k" { default = false }

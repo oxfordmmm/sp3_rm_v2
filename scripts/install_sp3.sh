@@ -17,12 +17,20 @@ chmod 600 /home/ubuntu/.ssh/gitlab_key
 echo "---Cloning SP3 Git"
 GIT_SSH_COMMAND='ssh -i /home/ubuntu/.ssh/gitlab_key -o StrictHostKeyChecking=no' git clone git@gitlab.com:MMMCloudPipeline/sp3.git
 
+# Set SP3 repo branch to use
 if [ "${Sp3_branch}" != "" ]
 then
     cd sp3
     git checkout ${Sp3_branch}
     cd ..
 fi
+
+# Set ncov2019-artic-nf repo branch to use
+NCOV_ARTIC_BRANCH=${Ncov_artic_branch}
+cat << EOF >> /home/ubuntu/.bashrc
+# Set what branch of the COVID artic pipeline we are using
+export NCOV_ARTIC_BRANCH=$${NCOV_ARTIC_BRANCH}
+EOF
 
 # Create key pair for SSH to self
 
