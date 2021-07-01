@@ -25,13 +25,6 @@ then
     cd ..
 fi
 
-# Set ncov2019-artic-nf repo branch to use
-NCOV_ARTIC_BRANCH=${Ncov_artic_branch}
-cat << EOF >> /home/ubuntu/.bashrc
-# Set what branch of the COVID artic pipeline we are using
-export NCOV_ARTIC_BRANCH=$${NCOV_ARTIC_BRANCH}
-EOF
-
 # Create key pair for SSH to self
 
 ssh-keygen -t rsa -f /home/ubuntu/.ssh/self_id_rsa -q -P ""
@@ -52,7 +45,8 @@ VIRIDIAN_VERSION=$(basename /tmp/$${COVID_ENV_VERSION}/viridian* .img | rev | cu
 cat << EOF >> /home/ubuntu/sp3_versions.json
 { 
     "covid_env_version":"$${COVID_ENV_VERSION}",
-    "viridian_version":"$${VIRIDIAN_VERSION}"
+    "viridian_version":"$${VIRIDIAN_VERSION}",
+    "ncov_artic_branch":"${Ncov_artic_branch}"
 }
 EOF
 
