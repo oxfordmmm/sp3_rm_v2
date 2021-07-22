@@ -109,6 +109,9 @@ jobs:
         run: |
           ssh -J ubuntu@${BASTION_NAME} ubuntu@10.0.1.2 "while [ ! -f /tmp/sp3_up ]; do sleep 2; done; echo 'SP3 deployed';"
       
-      - name: 'Start SP3 run'
+      # This should be used as a template for calling whatever tests want to be run. Could be done in two ways:
+      #   1) Start run with catsgo and check some things with bash
+      #   2) Do within nosetests or similar. Would require some clever waiting component for output or failure within the initial run.
+      - name: 'Start SP3 tests'
         run: |
           ssh -J ubuntu@${BASTION_NAME} ubuntu@10.0.1.2  "cd catsgo; python3 catsgo.py run-covid-illumina-objstore oxforduni-ncov2019-artic-nf-illumina /data/pipelines/ncov2019-artic-nf/objStoreExample.csv"
