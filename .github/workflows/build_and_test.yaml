@@ -4,10 +4,7 @@ name: oci-sp3-tests
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - testing
 
 jobs:
   build-test-stack:
@@ -107,7 +104,7 @@ jobs:
 
       - name: 'Get Bastion Host'
         run: |
-          ssh-keyscan -H $BASTION_NAME >> ~/.ssh/known_hosts
+          ssh-keyscan $BASTION_NAME >> ~/.ssh/known_hosts
 
       - name: 'Wait for SP3 deploy'
         run: |
@@ -118,7 +115,7 @@ jobs:
       #   2) Do within nosetests or similar. Would require some clever waiting component for output or failure within the initial run.
       - name: 'Start SP3 tests'
         run: |
-          ssh -J ubuntu@${BASTION_NAME} ubuntu@10.0.1.2  "cd catsgo; python3 catsgo.py run-covid-illumina-objstore oxforduni-ncov2019-artic-nf-illumina /data/pipelines/ncov2019-artic-nf/objStoreExample.csv"
+          ssh -J ubuntu@${BASTION_NAME} ubuntu@10.0.1.2  "cd sp3/catweb; python3 tests/test_catweb.py"
       
       # Example of Destroy job to use once logic for waiting for testing to finish is implemented (Would currently destroy stack immediately after job creation).
       # - name: 'Execute Destroy Job'
