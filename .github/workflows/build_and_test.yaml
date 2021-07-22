@@ -4,7 +4,11 @@ name: oci-sp3-tests
 on:
   push:
     branches:
-      - testing
+      - master
+  pull_request:
+    branches:
+      - master
+
 jobs:
   build-test-stack:
     name: Build SP3 Stack
@@ -115,3 +119,12 @@ jobs:
       - name: 'Start SP3 tests'
         run: |
           ssh -J ubuntu@${BASTION_NAME} ubuntu@10.0.1.2  "cd catsgo; python3 catsgo.py run-covid-illumina-objstore oxforduni-ncov2019-artic-nf-illumina /data/pipelines/ncov2019-artic-nf/objStoreExample.csv"
+      
+      # Example of Destroy job to use once logic for waiting for testing to finish is implemented (Would currently destroy stack immediately after job creation).
+      # - name: 'Execute Destroy Job'
+      #   run: |
+      #     sleep 10
+      #     echo "APPLY_JOB_ID=$(oci resource-manager job create-apply-job \
+      #       --execution-plan-strategy AUTO_APPROVED \
+      #       --stack-id $STACK_ID \
+      #       --wait-for-state IN_PROGRESS | jq '.data.id' -r)" >> $GITHUB_ENV
